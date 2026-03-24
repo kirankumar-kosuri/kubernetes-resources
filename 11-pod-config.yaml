@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pod-congif
+  name: pod-config
 
 spec:
   containers:
