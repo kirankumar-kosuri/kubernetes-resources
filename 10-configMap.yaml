@@ -4,4 +4,6 @@ kind: ConfigMap
 metadata:
   name: configmap-demo
 data:
-  course: 
+  course: "DevOps with Aws"
+  duration: "120Hrs"
+  trainer: "KiranKumar"
