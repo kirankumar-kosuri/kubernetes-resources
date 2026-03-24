@@ -1,0 +1,10 @@
+# apiVersion: v1
+# kind: Pod
+
+# metadata: 
+#   name: crash-loop-back-off
+
+# spec:
+#   containers:
+#     - name: almalinux
+#       image: almalinux:9
