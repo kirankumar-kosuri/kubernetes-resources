@@ -3,6 +3,7 @@ kind: Pod
 
 metadata:
   name: service-lb-demo
+  
   labels:
     project: roboshop
     environment: dev
