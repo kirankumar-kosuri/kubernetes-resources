@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: service-np-demo
+  labels:
+    project: roboshop
+    environment: dev
+    component: frontend
+    purpose: node-port
+
+spec: 
+  containers:
+  - name: nginx
+    image: nginx
