@@ -5,7 +5,7 @@ metadata:
   name: nginx
 
 spec:
-  selectors:
+  selector:
     project: roboshop
     component: frontend
     environment: dev
