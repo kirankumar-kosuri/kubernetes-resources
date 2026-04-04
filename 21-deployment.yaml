@@ -77,7 +77,7 @@ metadata:
   name: nginx-headless
 spec:
 # if a service has clusterip none then it is called headless service
-  clusterIp: None
+  clusterIP: None
   selector:
     purpose: headless-svc-demo
     project: roboshop
