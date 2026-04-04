@@ -39,7 +39,7 @@ spec:
       app: nginx
       purpose: statefull-demo
  # has to match .spec.template.metadata.labels
-  serviceName: "nginx-headless"
+  serviceName: nginx-headless
   replicas: 3 # by default is 1
   minReadySeconds: 10 # by default is 0
   template:
