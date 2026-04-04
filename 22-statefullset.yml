@@ -1,11 +1,11 @@
-# headless-service
+# headless service
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-headless
   labels:
-    app: nginx.
-    purpose: statefull-demo
+    app: nginx
+    purpose: stateful-demo
 spec:
   ports:
   - port: 80
@@ -13,6 +13,7 @@ spec:
   clusterIP: None
   selector:
     app: nginx
+    purpose: stateful-demo
 ---
 apiVersion: v1
 kind: Service
@@ -20,14 +21,14 @@ metadata:
   name: nginx
   labels:
     app: nginx
-    purpose: statefull-demo
+    purpose: stateful-demo
 spec:
   ports:
   - port: 80
     name: web
   selector:
     app: nginx
-    purpose: statefull-demo
+    purpose: stateful-demo
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -37,17 +38,14 @@ spec:
   selector:
     matchLabels:
       app: nginx
-      purpose: statefull-demo
- # has to match .spec.template.metadata.labels
-  serviceName: nginx-headless
+      purpose: stateful-demo # has to match .spec.template.metadata.labels
+  serviceName: "nginx-headless" # this should be head less service name
   replicas: 3 # by default is 1
-  minReadySeconds: 10 # by default is 0
   template:
     metadata:
       labels:
         app: nginx
-        purpose: statefull-demo
- # has to match .spec.selector.matchLabels
+        purpose: stateful-demo # has to match .spec.selector.matchLabels
     spec:
       containers:
       - name: nginx
@@ -58,13 +56,13 @@ spec:
         volumeMounts:
         - name: www
           mountPath: /usr/share/nginx/html
-  # this is pvc
+  # This is PVC
   volumeClaimTemplates:
   - metadata:
       name: www
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: roboshop-ebs
+      storageClassName: "roboshop-ebs"
       resources:
         requests:
           storage: 1Gi
