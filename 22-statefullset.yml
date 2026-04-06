@@ -1,11 +1,11 @@
-# headless service
+# headless-service
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-headless
+  purpose: statefull-demo
   labels:
     app: nginx
-    purpose: stateful-demo
 spec:
   ports:
   - port: 80
@@ -13,22 +13,23 @@ spec:
   clusterIP: None
   selector:
     app: nginx
-    purpose: stateful-demo
+    purpose: statefull-demo
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx
+  purpose: statefull-demo
   labels:
     app: nginx
-    purpose: stateful-demo
+    purpose: statefull-demo
 spec:
   ports:
   - port: 80
     name: web
   selector:
     app: nginx
-    purpose: stateful-demo
+    purpose: statefull-demo
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -38,14 +39,16 @@ spec:
   selector:
     matchLabels:
       app: nginx
-      purpose: stateful-demo # has to match .spec.template.metadata.labels
-  serviceName: "nginx-headless" # this should be head less service name
+      purpose: statefull-demo
+ # has to match .spec.template.metadata.labels
+  serviceName: "nginx-headless"
   replicas: 3 # by default is 1
   template:
     metadata:
       labels:
         app: nginx
-        purpose: stateful-demo # has to match .spec.selector.matchLabels
+        purpose: statefull-demo
+ # has to match .spec.selector.matchLabels
     spec:
       containers:
       - name: nginx
@@ -56,7 +59,6 @@ spec:
         volumeMounts:
         - name: www
           mountPath: /usr/share/nginx/html
-  # This is PVC
   volumeClaimTemplates:
   - metadata:
       name: www
