@@ -14,7 +14,6 @@ spec:
   selector:
     app: nginx
     purpose: statefullset-demo
-
 ---
 # normal service
 apiVersion: v1
